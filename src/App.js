@@ -8,12 +8,17 @@ import Restaurants from './views/Restaurants';
 import Users from './views/Users';
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import styled from 'styled-components'
+
+const Background = styled.div`
+background-image: linear-gradient(to right top, #ff8b5d, #fd957f, #f5a19c, #e7afb3, #d5bec2);
+`
 
 class App extends React.Component {
   render() {
     return(
       <Router>
-        <div>
+        <Background>
           <Navbar />
           <Switch>
             <Route exact path="/" component={Home} />
@@ -23,7 +28,7 @@ class App extends React.Component {
             <Route component={NotFound} />
           </Switch>
           <Footer />
-        </div>
+        </Background>
       </Router>
     )
   }

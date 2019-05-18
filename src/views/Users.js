@@ -1,7 +1,11 @@
 import React from 'react'
 import axios from 'axios'
 import User from '../components/User'
+import styled from 'styled-components'
 
+const Wrapper = styled.div`
+  background-size: cover
+`
 class Users extends React.Component {
   constructor() {
     super()
@@ -20,15 +24,17 @@ class Users extends React.Component {
   }
 
   render(){
+    
     const people = this.state.users.map(person => 
       <User
         key = {person.id}
         userInfo = {person}
       />)
+
     return(
-      <div>
+      <Wrapper>
         {people}
-      </div>
+      </Wrapper>
     )
   }
 

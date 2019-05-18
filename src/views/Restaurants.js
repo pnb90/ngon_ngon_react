@@ -1,7 +1,11 @@
 import React from 'react'
 import axios from 'axios'
 import RestaurantsComponent from '../components/Restaurants'
+import styled from 'styled-components'
 
+const Wrapper = styled.div`
+  background-size: cover
+`
 
 class Restaurants extends React.Component {
   constructor() {
@@ -18,10 +22,10 @@ class Restaurants extends React.Component {
           restaurants: response.data
         })
       })
-
   }
 
   render() {
+
     const eateries = this.state.restaurants.map(restaurant =>
       <RestaurantsComponent
         key = {restaurant.id} 
@@ -30,9 +34,9 @@ class Restaurants extends React.Component {
       )
 
     return(
-      <div>
+      <Wrapper>
         {eateries}
-      </div>
+      </Wrapper>
     )
   }
 }
