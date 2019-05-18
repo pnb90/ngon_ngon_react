@@ -12,7 +12,6 @@ class Restaurants extends React.Component {
     return(
       <div>
         <h3>Name: {this.props.restaurantInfo.name}</h3>
-        <h4>Address: {this.props.restaurantInfo.address}</h4>
       </div>
     )
   }

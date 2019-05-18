@@ -20,11 +20,14 @@ class Users extends React.Component {
   }
 
   render(){
+    const people = this.state.users.map(person => 
+      <User
+        key = {person.id}
+        userInfo = {person}
+      />)
     return(
       <div>
-        <User 
-          users = {this.state.users}
-        />
+        {people}
       </div>
     )
   }

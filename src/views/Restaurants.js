@@ -18,10 +18,11 @@ class Restaurants extends React.Component {
           restaurants: response.data
         })
       })
+
   }
 
   render() {
-    const places = this.state.restaurants.map(restaurant =>
+    const eateries = this.state.restaurants.map(restaurant =>
       <RestaurantsComponent
         key = {restaurant.id} 
         restaurantInfo = {restaurant}
@@ -30,7 +31,7 @@ class Restaurants extends React.Component {
 
     return(
       <div>
-        {places}
+        {eateries}
       </div>
     )
   }

@@ -5,12 +5,11 @@ import styled from 'styled-components'
     padding: 10px;
     background: palevioletred;
     width: 100%;
-    position: sticky;
     left: 0;
     bottom: 0;
   `
   
-  const LinkText = styled.p`
+  const FooterText = styled.p`
     color: papayawhip;
 
     &:hover{
@@ -20,9 +19,9 @@ import styled from 'styled-components'
 function Footer(){
   return(
     <Wrapper>
-      <LinkText>
+      <FooterText>
         Created by Phuoc Bui, 2019
-      </LinkText>
+      </FooterText>
     </Wrapper>
   )
 }
