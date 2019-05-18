@@ -6,7 +6,7 @@ import axios from 'axios';
 import * as serviceWorker from './serviceWorker';
 
 axios.defaults.baseURL = 
-  process.env.NODE_ENV === "development" ? "http://localhost:8080" : "/";
+  process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/";
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
