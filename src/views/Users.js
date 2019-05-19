@@ -1,7 +1,16 @@
 import React from 'react'
 import axios from 'axios'
 import User from '../components/User'
+import styled from 'styled-components'
 
+const Flexbox = styled.div`
+  background-size: cover
+  display: flex
+  flex-direction: row;
+  justify-content: space-around
+  align-items: center;
+  flex-wrap: wrap;
+`
 class Users extends React.Component {
   constructor() {
     super()
@@ -20,12 +29,17 @@ class Users extends React.Component {
   }
 
   render(){
+    
+    const people = this.state.users.map(person => 
+      <User
+        key = {person.id}
+        userInfo = {person}
+      />)
+
     return(
-      <div>
-        <User 
-          users = {this.state.users}
-        />
-      </div>
+      <Flexbox>
+        {people}
+      </Flexbox>
     )
   }
 

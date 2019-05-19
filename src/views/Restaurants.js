@@ -1,8 +1,15 @@
 import React from 'react'
 import axios from 'axios'
 import RestaurantsComponent from '../components/Restaurants'
+import styled from 'styled-components'
 
+const Flexbox = styled.div`
+  display: flex
+  flex-direction: row;
+  justify-content: space-around
+  align-items: center;
 
+`
 class Restaurants extends React.Component {
   constructor() {
     super()
@@ -21,7 +28,8 @@ class Restaurants extends React.Component {
   }
 
   render() {
-    const places = this.state.restaurants.map(restaurant =>
+
+    const eateries = this.state.restaurants.map(restaurant =>
       <RestaurantsComponent
         key = {restaurant.id} 
         restaurantInfo = {restaurant}
@@ -29,9 +37,9 @@ class Restaurants extends React.Component {
       )
 
     return(
-      <div>
-        {places}
-      </div>
+      <Flexbox>
+        {eateries}
+      </Flexbox>
     )
   }
 }
