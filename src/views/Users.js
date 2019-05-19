@@ -3,8 +3,13 @@ import axios from 'axios'
 import User from '../components/User'
 import styled from 'styled-components'
 
-const Wrapper = styled.div`
+const Flexbox = styled.div`
   background-size: cover
+  display: flex
+  flex-direction: row;
+  justify-content: space-around
+  align-items: center;
+  flex-wrap: wrap;
 `
 class Users extends React.Component {
   constructor() {
@@ -32,9 +37,9 @@ class Users extends React.Component {
       />)
 
     return(
-      <Wrapper>
+      <Flexbox>
         {people}
-      </Wrapper>
+      </Flexbox>
     )
   }
 
