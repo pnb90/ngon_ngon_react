@@ -11,7 +11,7 @@ import Footer from './components/Footer'
 import styled from 'styled-components'
 
 const Background = styled.div`
-background-image: linear-gradient(to right top, #ff8b5d, #fd957f, #f5a19c, #e7afb3, #d5bec2);
+background-image: linear-gradient(to right top, #feeed5, #fcdeb9, #fccd9f, #fcbb87, #fda773, #fea176, #fe9b7b, #fd957f, #f79e95, #eea8a8, #e2b3b7, #d5bec2);
 `
 
 class App extends React.Component {

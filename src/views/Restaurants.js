@@ -3,10 +3,13 @@ import axios from 'axios'
 import RestaurantsComponent from '../components/Restaurants'
 import styled from 'styled-components'
 
-const Wrapper = styled.div`
-  background-size: cover
-`
+const Flexbox = styled.div`
+  display: flex
+  flex-direction: row;
+  justify-content: space-around
+  align-items: center;
 
+`
 class Restaurants extends React.Component {
   constructor() {
     super()
@@ -34,9 +37,9 @@ class Restaurants extends React.Component {
       )
 
     return(
-      <Wrapper>
+      <Flexbox>
         {eateries}
-      </Wrapper>
+      </Flexbox>
     )
   }
 }

@@ -48,7 +48,7 @@ function Navbar() {
     <Wrapper>
       <List>
         <Logo>
-          Ngon Ngon
+          Ngon Ngon 
         </Logo>
         <StyledLink 
           to="/restaurants" 
