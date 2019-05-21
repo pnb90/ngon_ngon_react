@@ -22,13 +22,21 @@ class Restaurant extends React.Component {
   }
 
   render() {
-    return(
-      <div>
-        <Restaurants 
-          restaurantInfo = {this.state.restaurant}
-        />
-      </div>
-    )
+    if(this.state.restaurant.dishes) {
+      const dishes = this.state.restaurant.dishes.map(dish =>
+        <h4>{dish.name}</h4>
+      )
+      return(
+        <div>
+          <h1>{this.state.restaurant.name}</h1>
+          {dishes}
+        </div>
+      )
+    } return(
+        <div>
+          Loading...
+        </div>
+      )
   }
 }
 
