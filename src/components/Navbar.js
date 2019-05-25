@@ -4,7 +4,6 @@ import Restaurants from './Restaurants'
 import User from './User'
 import '../App.css'
 import styled from 'styled-components'
-import star from '@material-ui/icons';
 
   const Wrapper = styled.nav`
     padding: 20px;
@@ -47,8 +46,13 @@ function Navbar() {
     <Wrapper>
       <List>
         <Logo>
-          Ngon Ngon 
-          <star />
+          <StyledLink
+          to="/"
+          >
+          <LinkText>
+            Ngon Ngon 
+          </LinkText>
+          </StyledLink>
         </Logo>
         <StyledLink 
           to="/restaurants" 

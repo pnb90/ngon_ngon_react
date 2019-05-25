@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import User from '../components/User'
 import styled from 'styled-components'
@@ -11,38 +11,26 @@ const Flexbox = styled.div`
   align-items: center;
   flex-wrap: wrap;
 `
-class Users extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      users: []
-    }
-  }
 
-  componentDidMount() {
-    axios.get('/api/users')
-      .then(response => 
-        this.setState({
-          users: response.data
-        })
-     )
-  }
+function Users() {
+  const [users, setUsers] = useState( [] );
 
-  render(){
-    
-    const people = this.state.users.map(person => 
-      <User
-        key = {person.id}
-        userInfo = {person}
-      />)
+  useEffect(async() => {
+    const response = await axios.get("/api/users")
+    setUsers(response.data)
+  }, []);
 
-    return(
-      <Flexbox>
-        {people}
-      </Flexbox>
-    )
-  }
+  const people = users.map(person => 
+    <User
+      key = {person.id}
+      userInfo = {person}
+    />)
 
+  return(
+    <Flexbox>
+      {people}
+    </Flexbox>
+  )
 }
 
 export default Users
