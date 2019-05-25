@@ -9,12 +9,13 @@ const Wrapper = styled.footer`
   left: 0;
   bottom: 0;
   border-top: 2px solid black 
+  position: fixed;
 `
 
 const FooterText = styled.p`
   color: papayawhip;
   color: black;
-
+  
   &:hover{
     color: black
   }

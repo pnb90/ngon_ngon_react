@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import RestaurantsComponent from '../components/Restaurants'
 import styled from 'styled-components'
-import { Route, Link } from 'react-router-dom'
-
+import {Link}  from 'react-router-dom'
 
 const Flexbox = styled.div`
   display: flex
@@ -16,46 +15,34 @@ const Hyperlink = styled(Link)`
   text-decoration: none;
 `
 
-class Restaurants extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      restaurants: []
-    }
-  }
-  
-  componentDidMount() {
-    axios.get('/api/restaurants')
-      .then(response => {
-        this.setState({
-          restaurants: response.data
-        })
-      })
-  }
+function Restaurants() {
+  const [eateries, setEateries] = useState( [] );
 
-  render() {
+  useEffect(async() => {
+    const response = await axios.get("/api/restaurants")
+    setEateries(response.data)
+  }, []);
 
-    const eateries = this.state.restaurants.map(restaurant => {
-      return(
-        <div>
-          <Hyperlink
-          to={"/restaurants/" + restaurant.id}
+  const placeToEat = eateries.map(eatery => {
+    return(
+      <div>
+        <Hyperlink
+          to={"/restaurants/" + eatery.id}
           >
             <RestaurantsComponent
-            key = {restaurant.id} 
-            restaurantInfo = {restaurant}
+            key = {eatery.id} 
+            restaurantInfo = {eatery}
             /> 
           </Hyperlink>
-        </div>
-      )
-    })
-
-    return(
-      <Flexbox>
-        {eateries}
-      </Flexbox>
+      </div>
     )
-  }
+  });
+
+  return(
+    <Flexbox>
+      {placeToEat}
+    </Flexbox>
+  )
 }
 
 export default Restaurants
