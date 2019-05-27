@@ -61,7 +61,7 @@ class Restaurant extends React.Component {
   render() {
     if(this.state.restaurant.dishes) {
       const dishes = this.state.restaurant.dishes.map(dish =>
-        <h4>{dish.name}</h4>
+        <h3>{dish.name}</h3>
       )
       return(
         <div>
