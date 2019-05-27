@@ -6,7 +6,9 @@ import Home from './components/Home';
 import Restaurant from './views/Restaurant';
 import Restaurants from './views/Restaurants';
 import Users from './views/Users';
+import User from './views/User';
 import Reviews from './views/Reviews';
+import AddRestaurant from './views/AddRestaurant';
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import styled from 'styled-components'
@@ -27,10 +29,13 @@ class App extends React.Component {
           <Navbar />
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route path="/users/:userID" component={User} />
             <Route path="/users" component={Users} />
             <Route path="/reviews" component={Reviews} />
+            <Route path="/reviews/new" component={Reviews} />
             <Route path="/restaurants/:restaurantID" component={Restaurant} />
             <Route path="/restaurants" component={Restaurants} />
+            <Route path="/restaurants/new" component={AddRestaurant} />
             <Route component={NotFound} />
           </Switch>
           <Footer />

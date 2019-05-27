@@ -13,6 +13,7 @@ const Flexbox = styled.div`
 
 const Hyperlink = styled(Link)`
   text-decoration: none;
+  font-color: black;
 `
 
 function Restaurants() {
