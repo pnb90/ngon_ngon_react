@@ -3,6 +3,7 @@ import axios from 'axios'
 import RestaurantsComponent from '../components/Restaurants'
 import styled from 'styled-components'
 import {Link}  from 'react-router-dom'
+import RestaurantMap from '../components/Map'
 
 const Flexbox = styled.div`
   display: flex
@@ -40,9 +41,12 @@ function Restaurants() {
   });
 
   return(
-    <Flexbox>
-      {placeToEat}
-    </Flexbox>
+    <div>
+      <Flexbox>
+      <RestaurantMap />
+        {placeToEat}
+      </Flexbox>
+    </div>
   )
 }
 

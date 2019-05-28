@@ -14,8 +14,7 @@ function User(props) {
 
   return(
     <div>
-      <h1>Hi, I'm the single User Page.</h1>
-      <h3>User Goes Here: {user.name}</h3>
+      <h1>Welcome back, {user.name}!</h1>
     </div>
   )
 
