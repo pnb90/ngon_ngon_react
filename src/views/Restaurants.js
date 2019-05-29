@@ -41,12 +41,9 @@ function Restaurants() {
   });
 
   return(
-    <div>
-      <Flexbox>
+    <Flexbox>
       <RestaurantMap />
-        {placeToEat}
-      </Flexbox>
-    </div>
+    </Flexbox>
   )
 }
 
