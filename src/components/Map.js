@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ReactMapGL, { Marker, Popup } from 'react-map-gl'
 import axios from 'axios'
 import styled from 'styled-components'
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const MarkerIcon = styled.button`
   background: none;
@@ -86,9 +87,7 @@ function Map() {
     )
   } else {
     return(
-      <div>
-        loading...
-      </div>
+      <CircularProgress />
     )
   }
 }
