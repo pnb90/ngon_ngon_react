@@ -1,0 +1,22 @@
+General Notes:
+
+Destructuring
+https://wesbos.com/destructuring-objects/
+
+JS expression that allows data extraction from arrays, objects, maps, and sets into their own variable. Allows for property extraction, multiple at a time.
+
+const person = {
+  first: 'Wes',
+  last: 'Bos',
+  country: 'Canada',
+  city: 'Hamilton',
+  twitter: '@wesbos'
+};
+const first = person.first;
+const last = person.last;
+
+vs.
+
+const { first, last } = person;
+The above code says, give me a variable called first, a variable called last, and take it from the person object. We’re taking the first property and the last property and putting them into two new variables that will be scoped to the parent block (or window!).
+

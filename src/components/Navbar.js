@@ -9,10 +9,10 @@ import styled from 'styled-components'
     padding: 20px;
     background: papayawhip;
     background: transparent;
-
     width: 100%;
     position: sticky;
-    border-bottom: 2px solid black 
+    border-bottom: 2px solid black; 
+    margin-bottom: 15px
   `
   const Logo = styled.span`
     font-weight: bold;

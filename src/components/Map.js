@@ -3,19 +3,22 @@ import ReactMapGL, { Marker, Popup } from 'react-map-gl'
 import axios from 'axios'
 import styled from 'styled-components'
 import CircularProgress from '@material-ui/core/CircularProgress';
+import RestaurantIcon from '@material-ui/icons/Restaurant'
+import RestaurantResults from './RestaurantResults'
 
 const MarkerIcon = styled.button`
   background: none;
   border: none;
   cursor: pointer;
 `
+
 function Map() {
   const [viewport, setViewport] = useState({
     latitude: 41.8756,
     longitude: -87.6244,
     zoom: 12,
-    width: '80vw',
-    height: '75vh'
+    width: '60vw',
+    height: '70vh'
   })
   
   const [selectedRestaurant, setSelectedRestaurant] = useState( null )
@@ -26,7 +29,8 @@ function Map() {
     const response = await axios.get("/api/restaurants/data")
     setRestaurantLocation(response.data)
   }, []);
-
+  
+  // Allows user to press escape to exit out of popup window
   useEffect(() => {
     const listener = event => {
       if (event.key === "Escape") {
@@ -40,7 +44,8 @@ function Map() {
     };
   }, []);
 
-
+  // conditional rendering - if/else
+    // 
   if(restaurantLocation.data) {
     const restaurantInfo = restaurantLocation.data.businesses.map(business => 
       <Marker
@@ -53,10 +58,11 @@ function Map() {
             setSelectedRestaurant(business)
           }}
         >
-          🍔
+          <RestaurantIcon />
         </MarkerIcon>
       </Marker>
     )
+
     return(
       <div>
         <ReactMapGL
