@@ -10,14 +10,6 @@ const Container = styled.div`
   box-sizing: border-box;
 `
 function RestaurantResults(props){
-
-  // const businesses = props.map(business => {
-  //   return(
-  //     <div>
-  //       <h1>business.name</h1>
-  //     </div>
-  //   )
-  // })
   return(
     <Container>
       <h1>
