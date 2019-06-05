@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import RestaurantsComponent from '../components/Restaurants'
+import React from 'react'
 import styled from 'styled-components'
 import {Link}  from 'react-router-dom'
 import RestaurantMap from '../components/Map'
+import SearchBox from '../components/SearchBox'
+import RestaurantResults from '../components/RestaurantResults'
+
 
 const Flexbox = styled.div`
   display: flex
   flex-direction: row;
-  justify-content: space-around
+  justify-content: center;
   align-items: center;
 `
 
@@ -17,32 +18,31 @@ const Hyperlink = styled(Link)`
   font-color: black;
 `
 
+// https://dev.to/drews256/ridiculously-easy-row-and-column-layouts-with-flexbox-1k01
+const mapColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+`
+
+const searchColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+`
+
 function Restaurants() {
-  const [eateries, setEateries] = useState( [] );
-
-  useEffect(async() => {
-    const response = await axios.get("/api/restaurants")
-    setEateries(response.data)
-  }, []);
-
-  const placeToEat = eateries.map(eatery => {
-    return(
-      <div>
-        <Hyperlink
-          to={"/restaurants/" + eatery.id}
-          >
-            <RestaurantsComponent
-            key = {eatery.id} 
-            restaurantInfo = {eatery}
-            /> 
-          </Hyperlink>
-      </div>
-    )
-  });
-
   return(
     <Flexbox>
-      <RestaurantMap />
+      <mapColumn>
+        <RestaurantMap />
+      </mapColumn>
+      <searchColumn>
+        <SearchBox />
+        <RestaurantResults />
+      </searchColumn>
     </Flexbox>
   )
 }

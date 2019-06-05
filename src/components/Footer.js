@@ -10,6 +10,7 @@ const Wrapper = styled.footer`
   bottom: 0;
   border-top: 2px solid black 
   position: fixed;
+  margin-top: 15px
 `
 
 const FooterText = styled.p`
