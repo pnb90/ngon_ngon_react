@@ -12,11 +12,6 @@ const Container = styled.div`
   box-sizing: border-box;
 `
 
-// function handleSubmit(searchTerms) {
-//   console.log("HANDLESUBMIT IS TRIGGERING")
-//   const params = {searchTerms}
-// }
-
 function SearchBox(){
 
   const [searchTerms, setSearchTerms] = useState("")
@@ -25,11 +20,17 @@ function SearchBox(){
     event.preventDefault();
     setSearchTerms(event.target.value); 
     }
-
-  const handleSubmit = (event) => {
-    const params = {searchTerms}
+  
+  function handleSubmit() {
+    var params = {searchTerms}
     axios.get("/api/restaurants/search", {params} )
       .then(response => console.log(response.data))
+  }
+  
+  const handleKeyPress = (event) => {
+    if(event.key === "Enter") {
+      handleSubmit()
+    }
   }
 
   return(
@@ -38,6 +39,7 @@ function SearchBox(){
         value = {searchTerms}
         onChange = {handleSearchTermsChanges}
         type = "text"
+        onKeyPress = { handleKeyPress }
       />
       <IconButton 
         variant = "contained"
