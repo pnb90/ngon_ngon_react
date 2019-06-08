@@ -38,6 +38,7 @@ function SearchBox(){
         value = {searchTerms}
         onChange = {handleSearchTermsChanges}
         type = "text"
+        onKeyPress = { handleKeyPress }
       />
       <IconButton 
         variant = "contained"
