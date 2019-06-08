@@ -12,21 +12,25 @@ const Container = styled.div`
   box-sizing: border-box;
 `
 
-function handleSubmit(searchTerms) {
-  const backend_search = searchTerms
-  // console.log("I'm in the handleSubmit Function")
-  // console.log(backend_search)
-  axios.get("/api/restaurants/search", backend_search)
-    .then(response => console.log(response))
-}
+// function handleSubmit(searchTerms) {
+//   console.log("HANDLESUBMIT IS TRIGGERING")
+//   const params = {searchTerms}
+// }
 
 function SearchBox(){
+
   const [searchTerms, setSearchTerms] = useState("")
 
   const handleSearchTermsChanges = (event) => { 
     event.preventDefault();
     setSearchTerms(event.target.value); 
     }
+
+  const handleSubmit = (event) => {
+    const params = {searchTerms}
+    axios.get("/api/restaurants/search", {params} )
+      .then(response => console.log(response.data))
+  }
 
   return(
     <Container>
@@ -39,7 +43,8 @@ function SearchBox(){
         variant = "contained"
         size = "small"
         aria-label = "search"
-        onSubmit = { handleSubmit(searchTerms) }
+        type = "submit"
+        onClick = { handleSubmit }
       >
         <SearchIcon /> 
       </IconButton>
