@@ -12,7 +12,7 @@ const Container = styled.div`
   box-sizing: border-box;
 `
 
-function SearchBox(){
+function SearchBox(props){
 
   const [searchTerms, setSearchTerms] = useState("")
 
@@ -23,9 +23,16 @@ function SearchBox(){
   
   function handleSubmit() {
     var params = {searchTerms}
+    var heldResponse = {}
     axios.get("/api/restaurants/search", {params} )
-      .then(response => console.log(response.data))
+      .then(response => {
+                          heldResponse = response.data.search_data.businesses
+                          props.callbackFromParent( heldResponse )
+      })
+
   }
+
+
   
   const handleKeyPress = (event) => {
     if(event.key === "Enter") {
