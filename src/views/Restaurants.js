@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import {Link}  from 'react-router-dom'
 import RestaurantMap from '../components/Map'
@@ -34,17 +34,37 @@ const searchColumn = styled.div`
 `
 
 function Restaurants() {
-  return(
-    <Flexbox>
-      <mapColumn>
-        <RestaurantMap />
-      </mapColumn>
-      <searchColumn>
-        <SearchBox />
-        <RestaurantResults />
-      </searchColumn>
-    </Flexbox>
-  )
+  const [searchRestaurants, setSearchRestaurants] = useState({})
+  
+
+  const restaurantCallback = (dataFromChild) => {
+    setSearchRestaurants( {dataFromChild} )
+  }
+
+    return(
+      <Flexbox>
+        <mapColumn>
+          <RestaurantMap />
+        </mapColumn>
+        <searchColumn>
+          <SearchBox callbackFromParent = { restaurantCallback }/>
+          <RestaurantResults  searchResults = { searchRestaurants }/>
+        </searchColumn>
+      </Flexbox>
+    )  
+  
 }
+
+
+// class Restaurants extends React.Component {
+
+//   constructor(props) {
+//     super()
+//     this.state = {
+//                 searchRestaurants: [{}]
+//     }
+//   }
+
+
 
 export default Restaurants
