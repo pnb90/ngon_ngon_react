@@ -25,11 +25,10 @@ function SearchBox(props){
   function handleSubmit() {
     var params = { searchTerms }
     var heldResponse = {}
-    axios.get("/api/restaurants/search", {params} )
-      .then(response => {
-                          heldResponse = response.data.search_data.businesses
-                          props.searchRestaurantCallback( heldResponse )
-      })
+    axios.get("/api/restaurants/data", {params} )
+      .then(response => { heldResponse = response.data.data.businesses
+                          props.searchRestaurantCallback( heldResponse )}
+      )
 
   }
 

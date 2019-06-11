@@ -15,53 +15,19 @@ const Container = styled.div`
 `
 
 const RestaurantContainer = styled.div`
-  border: 1px black solid;
+  margin: 10px
+  border-bottom: 1px black solid
   width: auto;
 `
 
 function RestaurantResults(props){
-  
+  var results = null
   if( props.searchResults.dataFromChild ) {
-  const results = props.searchResults.dataFromChild.map(searchResult =>
-    <RestaurantContainer>
-      <h3>
-        { searchResult.name } 
-      </h3>
-      <h4>
-        { searchResult.display_phone }
-      </h4> 
-      <h4>
-        { searchResult.location.display_address[0] } <br />
-        { searchResult.location.display_address[1] }
-      </h4>
-    </RestaurantContainer>
-  )
-
-  return(
-    <Container>
-        { results }
-    </Container>
-  )} else if ( props.defaultResults ) {
-    const results = props.defaultResults.map(defaultResult =>
-      <RestaurantContainer>
-        <h3>
-          { defaultResult.name } 
-        </h3>
-        <h4>
-          { defaultResult.display_phone }
-        </h4> 
-        <h4>
-          { defaultResult.location.display_address[0] } <br />
-          { defaultResult.location.display_address[1] }
-        </h4>
-      </RestaurantContainer>
-    )
-    return(
-      <Container>
-        { results }
-      </Container>
-    )} 
-
+    results = props.searchResults.dataFromChild
+  } 
+  else if ( props.defaultResults ) {
+    results = props.defaultResults
+  } 
   else {
     return(
       <div>
@@ -69,6 +35,27 @@ function RestaurantResults(props){
       </div>
     )
   }
+    
+  const displayResults = results.map(result =>
+    <RestaurantContainer>
+      <h3>
+        { result.name } 
+      </h3>
+      <h4>
+        { result.location.display_address[0] } <br />
+        { result.location.display_address[1] }
+      </h4>
+      <h4>
+        { result.display_phone }
+      </h4> 
+    </RestaurantContainer>
+  )
+    
+  return(
+    <Container>
+      { displayResults }
+    </Container>
+  )
 } 
 
 export default RestaurantResults
