@@ -29,9 +29,6 @@ const mapColumn = styled.div`
 const searchColumn = styled.div`
 `
 
-
-
-
 function Restaurants() {
   const [restaurantLocation, setRestaurantLocation] = useState()
 
@@ -58,8 +55,11 @@ function Restaurants() {
           />
         </mapColumn>
         <searchColumn>
-          <SearchBox searchRestaurantCallback = { searchRestaurantCallback }/>
-          <RestaurantResults  searchResults = { searchRestaurants }/>
+          <SearchBox 
+            searchRestaurantCallback = { searchRestaurantCallback }/>
+          <RestaurantResults  
+            defaultResults = { restaurantLocation }
+            searchResults = { searchRestaurants }/>
         </searchColumn>
       </Flexbox>
     )  
