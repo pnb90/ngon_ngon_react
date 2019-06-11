@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import ReactMapGL, { Marker, Popup } from 'react-map-gl'
-import axios from 'axios'
 import styled from 'styled-components'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import RestaurantIcon from '@material-ui/icons/Restaurant'
-import RestaurantResults from './RestaurantResults'
 
 const MarkerIcon = styled.button`
   background: none;
@@ -36,10 +34,22 @@ function Map(props) {
       window.removeEventListener("keydown", listener);
     };
   }, []);
+  
+  var restaurantInfo = null
 
-  if(props.restaurantLocation) {
-    console.log(props.restaurantLocation)
-    const restaurantInfo = props.restaurantLocation.map(business => 
+  if (props.searchRestaurants.dataFromChild) {
+    restaurantInfo = props.searchRestaurants.dataFromChild
+  }
+  else if(props.restaurantLocation) {
+    restaurantInfo = props.restaurantLocation
+  } 
+  else {
+    return(
+      <CircularProgress />
+    )
+  }
+
+  const displayRestaurants = restaurantInfo.map(business => 
       <Marker
         latitude = {business.coordinates.latitude}
         longitude = {business.coordinates.longitude}
@@ -55,41 +65,37 @@ function Map(props) {
       </Marker>
     )
 
-    return(
-      <div>
-        <ReactMapGL
-          {...viewport}
-          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-          mapStyle='mapbox://styles/phuocbui90/cjw86awmf5d8s1co3h5kblj2x'
-          onViewportChange={viewport => {
-            setViewport(viewport);
-          }}
-        >
-          {restaurantInfo}
-          {selectedRestaurant && (
-            <Popup
-              latitude = {selectedRestaurant.coordinates.latitude}
-              longitude = {selectedRestaurant.coordinates.longitude}
-              onClose = {() => {
-                setSelectedRestaurant( null )
-              }}
-            >
-              <div>
-                <h4>{selectedRestaurant.name}</h4>
-                <h5>{selectedRestaurant.location.display_address[0]} <br />
-                {selectedRestaurant.location.display_address[1]}
-                </h5>
-              </div>
-            </Popup>
-        )}
-        </ReactMapGL>
-      </div>
-    )
-  } else {
-    return(
-      <CircularProgress />
-    )
-  }
+  return(
+    <div>
+  
+    <ReactMapGL
+         {...viewport}
+         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+         mapStyle='mapbox://styles/phuocbui90/cjw86awmf5d8s1co3h5kblj2x'
+         onViewportChange={viewport => {
+           setViewport(viewport);
+         }}
+       >
+         {displayRestaurants}
+         {selectedRestaurant && (
+           <Popup
+             latitude = {selectedRestaurant.coordinates.latitude}
+             longitude = {selectedRestaurant.coordinates.longitude}
+             onClose = {() => {
+               setSelectedRestaurant( null )
+             }}
+           >
+             <div>
+               <h4>{selectedRestaurant.name}</h4>
+               <h5>{selectedRestaurant.location.display_address[0]} <br />
+               {selectedRestaurant.location.display_address[1]}
+               </h5>
+             </div>
+           </Popup>
+       )}
+       </ReactMapGL>
+    </div>
+  )
 }
 
 export default Map

@@ -23,7 +23,6 @@ const Hyperlink = styled(Link)`
 
 // https://dev.to/drews256/ridiculously-easy-row-and-column-layouts-with-flexbox-1k01
 const mapColumn = styled.div`
-
 `
 
 const searchColumn = styled.div`
@@ -31,11 +30,13 @@ const searchColumn = styled.div`
 
 function Restaurants() {
   const [restaurantLocation, setRestaurantLocation] = useState()
-
+  
   useEffect(async() => {
     const response = await axios.get("/api/restaurants/data")
     setRestaurantLocation(response.data.data.businesses)
-  }, []);
+    console.log("THIS IS THE NEW RESTAURAN LOCATION")
+    console.log({restaurantLocation})
+    }, []);
 
   const [searchRestaurants, setSearchRestaurants] = useState({})
   
@@ -43,15 +44,12 @@ function Restaurants() {
     setSearchRestaurants( {dataFromChild} )
   }
 
-  const mapRestaurantCallback = (dataFromChild) => {
-    setSearchRestaurants( {dataFromChild} )
-  }
-
     return(
       <Flexbox>
         <mapColumn>
           <RestaurantMap 
-            restaurantLocation = {restaurantLocation} 
+            restaurantLocation = { restaurantLocation } 
+            searchRestaurants = { searchRestaurants }
           />
         </mapColumn>
         <searchColumn>
@@ -59,7 +57,8 @@ function Restaurants() {
             searchRestaurantCallback = { searchRestaurantCallback }/>
           <RestaurantResults  
             defaultResults = { restaurantLocation }
-            searchResults = { searchRestaurants }/>
+            searchResults = { searchRestaurants }
+          />
         </searchColumn>
       </Flexbox>
     )  
