@@ -7,9 +7,10 @@ import SearchIcon from '@material-ui/icons/Search';
 
 const Container = styled.div`
   background: white;
-  width: 300px;
+  width: auto;
   height: 31px;
   box-sizing: border-box;
+  border-radius: 5px;
 `
 
 function SearchBox(props){
@@ -22,12 +23,12 @@ function SearchBox(props){
     }
   
   function handleSubmit() {
-    var params = {searchTerms}
+    var params = { searchTerms }
     var heldResponse = {}
     axios.get("/api/restaurants/search", {params} )
       .then(response => {
                           heldResponse = response.data.search_data.businesses
-                          props.callbackFromParent( heldResponse )
+                          props.searchRestaurantCallback( heldResponse )
       })
 
   }
