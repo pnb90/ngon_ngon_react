@@ -12,23 +12,18 @@ const MarkerIcon = styled.button`
   cursor: pointer;
 `
 
-function Map() {
+function Map(props) {
   const [viewport, setViewport] = useState({
     latitude: 41.8756,
     longitude: -87.6244,
     zoom: 12,
     width: '60vw',
-    height: '70vh'
+    height: '70vh',
   })
   
   const [selectedRestaurant, setSelectedRestaurant] = useState( null )
 
   const [restaurantLocation, setRestaurantLocation] = useState( [] )
-
-  useEffect(async() => {
-    const response = await axios.get("/api/restaurants/data")
-    setRestaurantLocation(response.data)
-  }, []);
   
   // Allows user to press escape to exit out of popup window
   useEffect(() => {
@@ -46,8 +41,9 @@ function Map() {
 
   // conditional rendering - if/else
     // 
-  if(restaurantLocation.data) {
-    const restaurantInfo = restaurantLocation.data.businesses.map(business => 
+  if(props.restaurantLocation) {
+    console.log(props.restaurantLocation)
+    const restaurantInfo = props.restaurantLocation.map(business => 
       <Marker
         latitude = {business.coordinates.latitude}
         longitude = {business.coordinates.longitude}
@@ -84,7 +80,9 @@ function Map() {
             >
               <div>
                 <h4>{selectedRestaurant.name}</h4>
-                <h5>{selectedRestaurant.location.display_address}</h5>
+                <h5>{selectedRestaurant.location.display_address[0]} <br />
+                {selectedRestaurant.location.display_address[1]}
+                </h5>
               </div>
             </Popup>
         )}

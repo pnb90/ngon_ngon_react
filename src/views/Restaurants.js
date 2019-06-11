@@ -1,5 +1,6 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
+import axios from 'axios'
 import {Link}  from 'react-router-dom'
 import RestaurantMap from '../components/Map'
 import SearchBox from '../components/SearchBox'
@@ -7,8 +8,10 @@ import RestaurantResults from '../components/RestaurantResults'
 
 
 const Flexbox = styled.div`
-  display: flex
+  display: flex;
   flex-direction: row;
+  flex-basis: 100%;
+  flex: 1;
   justify-content: center;
   align-items: center;
 `
@@ -20,51 +23,47 @@ const Hyperlink = styled(Link)`
 
 // https://dev.to/drews256/ridiculously-easy-row-and-column-layouts-with-flexbox-1k01
 const mapColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-basis: 100%;
-  flex: 1;
+
 `
 
 const searchColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-basis: 100%;
-  flex: 1;
 `
 
+
+
+
 function Restaurants() {
+  const [restaurantLocation, setRestaurantLocation] = useState()
+
+  useEffect(async() => {
+    const response = await axios.get("/api/restaurants/data")
+    setRestaurantLocation(response.data.data.businesses)
+  }, []);
+
   const [searchRestaurants, setSearchRestaurants] = useState({})
   
+  const searchRestaurantCallback = (dataFromChild) => {
+    setSearchRestaurants( {dataFromChild} )
+  }
 
-  const restaurantCallback = (dataFromChild) => {
+  const mapRestaurantCallback = (dataFromChild) => {
     setSearchRestaurants( {dataFromChild} )
   }
 
     return(
       <Flexbox>
         <mapColumn>
-          <RestaurantMap />
+          <RestaurantMap 
+            restaurantLocation = {restaurantLocation} 
+          />
         </mapColumn>
         <searchColumn>
-          <SearchBox callbackFromParent = { restaurantCallback }/>
+          <SearchBox searchRestaurantCallback = { searchRestaurantCallback }/>
           <RestaurantResults  searchResults = { searchRestaurants }/>
         </searchColumn>
       </Flexbox>
     )  
   
 }
-
-
-// class Restaurants extends React.Component {
-
-//   constructor(props) {
-//     super()
-//     this.state = {
-//                 searchRestaurants: [{}]
-//     }
-//   }
-
-
 
 export default Restaurants
