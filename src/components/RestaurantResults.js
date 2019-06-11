@@ -11,7 +11,7 @@ const Container = styled.div`
   box-sizing: border-box;
   overflow: auto;
   border-radius: 5px;
-
+  flex-direction: column;
 `
 
 const RestaurantContainer = styled.div`
@@ -20,9 +20,8 @@ const RestaurantContainer = styled.div`
 `
 
 function RestaurantResults(props){
-
+  
   if( props.searchResults.dataFromChild ) {
-
   const results = props.searchResults.dataFromChild.map(searchResult =>
     <RestaurantContainer>
       <h3>
@@ -40,16 +39,34 @@ function RestaurantResults(props){
 
   return(
     <Container>
-      <RestaurantContainer>
         { results }
-      </RestaurantContainer>
     </Container>
-  ) 
-  } else {
+  )} else if ( props.defaultResults ) {
+    const results = props.defaultResults.map(defaultResult =>
+      <RestaurantContainer>
+        <h3>
+          { defaultResult.name } 
+        </h3>
+        <h4>
+          { defaultResult.display_phone }
+        </h4> 
+        <h4>
+          { defaultResult.location.display_address[0] } <br />
+          { defaultResult.location.display_address[1] }
+        </h4>
+      </RestaurantContainer>
+    )
     return(
       <Container>
-        heyo
+        { results }
       </Container>
+    )} 
+
+  else {
+    return(
+      <div>
+        <CircularProgress />
+      </div>
     )
   }
 } 

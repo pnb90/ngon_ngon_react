@@ -22,8 +22,6 @@ function Map(props) {
   })
   
   const [selectedRestaurant, setSelectedRestaurant] = useState( null )
-
-  const [restaurantLocation, setRestaurantLocation] = useState( [] )
   
   // Allows user to press escape to exit out of popup window
   useEffect(() => {
@@ -39,8 +37,6 @@ function Map(props) {
     };
   }, []);
 
-  // conditional rendering - if/else
-    // 
   if(props.restaurantLocation) {
     console.log(props.restaurantLocation)
     const restaurantInfo = props.restaurantLocation.map(business => 
