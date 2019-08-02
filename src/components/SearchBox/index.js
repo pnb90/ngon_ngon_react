@@ -1,17 +1,9 @@
 import React, { useState }from 'react'
 import axios from 'axios'
 import InputBase from '@material-ui/core/InputBase';
-import styled from 'styled-components'
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
-
-const Container = styled.div`
-  background: white;
-  width: auto;
-  height: 31px;
-  box-sizing: border-box;
-  border-radius: 5px;
-`
+import { Container } from './style'
 
 function SearchBox(props){
 
@@ -32,8 +24,6 @@ function SearchBox(props){
 
   }
 
-
-  
   const handleKeyPress = (event) => {
     if(event.key === "Enter") {
       handleSubmit()
