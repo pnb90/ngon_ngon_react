@@ -1,7 +1,6 @@
-import React from 'react'
 import styled from 'styled-components'
 
-const Wrapper = styled.footer`
+export const Wrapper = styled.footer`
   padding: 10px;
   background: palevioletred;
   background: transparent;
@@ -13,22 +12,11 @@ const Wrapper = styled.footer`
   margin-top: 15px
 `
 
-const FooterText = styled.p`
+export const FooterText = styled.p`
   color: papayawhip;
   color: black;
   
   &:hover{
     color: black
   }
-  `
-function Footer(){
-  return(
-    <Wrapper>
-      <FooterText>
-        Created by Phuoc Bui, 2019
-      </FooterText>
-    </Wrapper>
-  )
-}
-
-export default Footer
+`

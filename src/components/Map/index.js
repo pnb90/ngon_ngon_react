@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import ReactMapGL, { Marker, Popup } from 'react-map-gl'
-import styled from 'styled-components'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import RestaurantIcon from '@material-ui/icons/Restaurant'
-
-const MarkerIcon = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-`
+import { MarkerIcon } from './style'
 
 function Map(props) {
   const [viewport, setViewport] = useState({

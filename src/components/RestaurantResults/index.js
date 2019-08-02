@@ -1,24 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
 import CircularProgress from '@material-ui/core/CircularProgress';
-
-const Container = styled.div`
-  display: flex;
-  background: white;
-  width: auto;
-  height: 435px;
-  border: 2px black solid;
-  box-sizing: border-box;
-  overflow: auto;
-  border-radius: 5px;
-  flex-direction: column;
-`
-
-const RestaurantContainer = styled.div`
-  margin: 10px
-  border-bottom: 1px black solid
-  width: auto;
-`
 
 function RestaurantResults(props){
   var results = null
