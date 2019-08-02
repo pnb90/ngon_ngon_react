@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import Restaurants from './Restaurants'
-import User from './User'
-import '../App.css'
+import Restaurants from '../Restaurants/index'
+import User from '../User/index'
+import '../../App.css'
 import { Wrapper, Logo, List, StyledLink, LinkText } from './style'
 
 function Navbar() {

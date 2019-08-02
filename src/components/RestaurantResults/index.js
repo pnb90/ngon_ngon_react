@@ -1,5 +1,6 @@
 import React from 'react'
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress'
+import { Container , RestaurantContainer } from './style'
 
 function RestaurantResults(props){
   var results = null

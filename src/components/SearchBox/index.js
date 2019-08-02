@@ -3,8 +3,7 @@ import axios from 'axios'
 import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
-
-
+import { Container } from './style'
 
 function SearchBox(props){
 
@@ -25,8 +24,6 @@ function SearchBox(props){
 
   }
 
-
-  
   const handleKeyPress = (event) => {
     if(event.key === "Enter") {
       handleSubmit()
